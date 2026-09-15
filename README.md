@@ -1,8 +1,9 @@
 ## Welcome to my sourdough bakery!!
-<img width="691" height="742" alt="image" src="https://github.com/user-attachments/assets/d399530e-0416-485a-a903-38939850a5a1" />
 
 This is a personal project - work in progress
 made to sell loaves of sourdough to my coworkers :)
+
+<img width="648" height="625" alt="image" src="https://github.com/user-attachments/assets/ae0317f5-a34b-4475-9519-80a5c9133a76" />
 
 ## Why I'm making this
 
