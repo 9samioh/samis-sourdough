@@ -1,36 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Welcome to my sourdough bakery!!
+<img width="691" height="742" alt="image" src="https://github.com/user-attachments/assets/d399530e-0416-485a-a903-38939850a5a1" />
 
-## Getting Started
+This is a personal project - work in progress
+made to sell loaves of sourdough to my coworkers :)
 
-First, run the development server:
+## Why I'm making this
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I'm taking this project as an opportunity to familiarize myself with Cursor and Claude, since these are platforms I'm restricted from using at work.  As a developer, I want to gain experience with these tools so I can always stay up to date with the newest tools.  I also just really needed somewhere to sell my loaves, as I'm getting tired of my google form :').  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What I'm still working on
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is purely a frontend project right now that's taking a test data file.  My next step is to move the inventory into a database and have my checkout API update it.  Then people can really start using the site!  I'll be deployed as an extra tab on my portfolio site once I'm done.
