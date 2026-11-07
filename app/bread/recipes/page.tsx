@@ -17,7 +17,7 @@ export default async function RecipesPage() {
           <h3>Ingredients</h3>
           <ul>
             {recipe.ingredients.map((ingredient: any) => (
-              <li key={ingredient.name}>
+              <li key={ingredient.id}>
                 {ingredient.amount}
                 {ingredient.unit} {ingredient.name}
               </li>
