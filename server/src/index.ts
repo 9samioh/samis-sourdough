@@ -1,11 +1,10 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import { prisma } from "./lib/prisma.js";
 import { errorHandler } from "./middleware/errorHandler.js";
-
-dotenv.config();
+import chatRoutes from "./routes/chatRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,6 +19,7 @@ app.use(express.json());
 
 // api routes
 app.use("/api/recipes", recipeRoutes);
+app.use("/api/chat", chatRoutes);
 
 // First API endpoint
 app.get("/api/health", (req, res) => {
