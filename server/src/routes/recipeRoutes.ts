@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { prisma } from "../lib/prisma.js";
-import { CreateRecipeInput } from "../types/recipe.js";
 import { createRecipeSchema } from "../schemas/recipeSchema.js";
 
 const router = Router();
@@ -50,102 +49,90 @@ router.get("/:slug", async (req, res) => {
 
 // POST one recipe
 router.post("/", async (req, res) => {
-  try {
-    const result = createRecipeSchema.safeParse(req.body);
-    if (!result.success) {
-      res.status(400).json({
-        status: "error",
-        message: "Invalid recipe data",
-        errors: result.error.flatten(),
-      });
-      return;
-    }
-    const recipeData = result.data;
-
-    const recipe = await prisma.recipe.create({
-      data: {
-        slug: recipeData.slug,
-        name: recipeData.name,
-        description: recipeData.description,
-        ingredients: {
-          create: recipeData.ingredients.map((ingredient) => ({
-            name: ingredient.name,
-            amount: ingredient.amount,
-            unit: ingredient.unit,
-          })),
-        },
-        servings: recipeData.servings,
-        prepTime: recipeData.prepTime,
-        bakeTime: recipeData.bakeTime,
-      },
-      include: {
-        ingredients: true,
-      },
+  const result = createRecipeSchema.safeParse(req.body);
+  if (!result.success) {
+    res.status(400).json({
+      status: "error",
+      message: "Invalid recipe data",
+      errors: result.error.flatten(),
     });
-    res.status(201).json({ status: "success", data: recipe });
-  } catch (error) {
-    res.status(500).json({ status: "error", message: "Error creating recipe" });
+    return;
   }
+  const recipeData = result.data;
+
+  const recipe = await prisma.recipe.create({
+    data: {
+      slug: recipeData.slug,
+      name: recipeData.name,
+      description: recipeData.description,
+      ingredients: {
+        create: recipeData.ingredients.map((ingredient) => ({
+          name: ingredient.name,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
+        })),
+      },
+      servings: recipeData.servings,
+      prepTime: recipeData.prepTime,
+      bakeTime: recipeData.bakeTime,
+    },
+    include: {
+      ingredients: true,
+    },
+  });
+  res.status(201).json({ status: "success", data: recipe });
 });
 
 // PUT edit one recipe by slug
 router.put("/:slug", async (req, res) => {
-  try {
-    const recipeSlug = req.params.slug;
-    const result = createRecipeSchema.safeParse(req.body);
-    if (!result.success) {
-      res.status(400).json({
-        status: "error",
-        message: "Invalid recipe data",
-        errors: result.error.flatten(),
-      });
-      return;
-    }
-    const recipeData = result.data;
-
-    const recipe = await prisma.recipe.update({
-      where: {
-        slug: recipeSlug,
-      },
-      data: {
-        slug: recipeData.slug,
-        name: recipeData.name,
-        description: recipeData.description,
-        ingredients: {
-          deleteMany: {},
-          create: recipeData.ingredients.map((ingredient) => ({
-            name: ingredient.name,
-            amount: ingredient.amount,
-            unit: ingredient.unit,
-          })),
-        },
-        servings: recipeData.servings,
-        prepTime: recipeData.prepTime,
-        bakeTime: recipeData.bakeTime,
-      },
-      include: {
-        ingredients: true,
-      },
+  const recipeSlug = req.params.slug;
+  const result = createRecipeSchema.safeParse(req.body);
+  if (!result.success) {
+    res.status(400).json({
+      status: "error",
+      message: "Invalid recipe data",
+      errors: result.error.flatten(),
     });
-    res.status(200).json({ status: "success", data: recipe });
-  } catch (e) {
-    res.status(404).json({ status: "error", message: "Error editing recipe" });
+    return;
   }
+  const recipeData = result.data;
+
+  const recipe = await prisma.recipe.update({
+    where: {
+      slug: recipeSlug,
+    },
+    data: {
+      slug: recipeData.slug,
+      name: recipeData.name,
+      description: recipeData.description,
+      ingredients: {
+        deleteMany: {},
+        create: recipeData.ingredients.map((ingredient) => ({
+          name: ingredient.name,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
+        })),
+      },
+      servings: recipeData.servings,
+      prepTime: recipeData.prepTime,
+      bakeTime: recipeData.bakeTime,
+    },
+    include: {
+      ingredients: true,
+    },
+  });
+  res.status(200).json({ status: "success", data: recipe });
 });
 
 // DELETE a recipe
 router.delete("/:slug", async (req, res) => {
-  try {
-    const recipeSlug = req.params.slug;
-    const deleteRecipe = await prisma.recipe.delete({
-      where: {
-        slug: recipeSlug,
-      },
-    });
-    res.status(200).json({ status: "success", data: deleteRecipe });
-  } catch (e) {
-    res.status(404).json({ status: "error", message: "Error deleting recipe" });
-  }
+  const recipeSlug = req.params.slug;
+  const deleteRecipe = await prisma.recipe.delete({
+    where: {
+      slug: recipeSlug,
+    },
+  });
+  res.status(200).json({ status: "success", data: deleteRecipe });
 });
 
 export default router;

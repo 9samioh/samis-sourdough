@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import { prisma } from "./lib/prisma.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
 dotenv.config();
 
@@ -47,6 +48,13 @@ app.get("/api/test-db", async (req, res) => {
     });
   }
 });
+
+app.get("/api/test-error", async (req, res) => {
+  throw new Error("Testing centralized error handling");
+});
+
+// Error handling middleware
+app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
