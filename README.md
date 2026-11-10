@@ -16,3 +16,12 @@ I'm building Loaf as an opportunity to grow beyond my primarily frontend profess
 - Improving the AI chat experience
 - Knowledge retrieval (RAG) - retrieves relevant sourdough information from my personal knowledge base
 - Recipes frontend/data
+
+## Stack
+Frontend - Next.js, React, TypeScript
+Backend - Node.js + Express
+Database - PostgreSQL
+ORM - Prisma
+AI - OpenAI API
+Hosting - Vercel + Render
+
