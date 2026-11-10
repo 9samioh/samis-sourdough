@@ -14,8 +14,8 @@ export const recipes: Recipe[] = [
       { name: "Salt", amount: 10, unit: "g" },
     ],
     servings: 1,
-    prepTime: "12–18 hours",
-    bakeTime: "45 minutes",
+    prepTime: 900,
+    bakeTime: 45,
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const recipes: Recipe[] = [
       { name: "Olive oil", amount: 30, unit: "g" },
     ],
     servings: 1,
-    prepTime: "8–12 hours",
-    bakeTime: "25–30 minutes",
+    prepTime: 600,
+    bakeTime: 30,
   },
 ];

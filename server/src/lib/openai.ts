@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 import OpenAI from "openai";
-import { fileURLToPath } from "url";
+import path from "path";
 
-const envPath = fileURLToPath(new URL("../../.env.local", import.meta.url));
-
-dotenv.config({ path: envPath });
+dotenv.config({
+  path: path.resolve(process.cwd(), ".env.local"),
+});
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("OPENAI_API_KEY was not found in .env.local");

@@ -105,4 +105,8 @@ export const QueryMode = {
     default: 'default',
     insensitive: 'insensitive'
 };
+export const NullsOrder = {
+    first: 'first',
+    last: 'last'
+};
 export const defineExtension = runtime.Extensions.defineExtension;
