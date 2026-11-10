@@ -1,14 +1,18 @@
 ## Welcome to my sourdough bakery!!
 
 This is a personal project - work in progress
-made to sell loaves of sourdough to my coworkers :)
+I've given out MANY jars of starter to friends/family/coworkers, but everyone's finding it pretty difficult to get started.
+For a while, I've been typing out starter guides to help them, but I thought I'd create a real tool for everyone to use! :)
 
-<img width="648" height="625" alt="image" src="https://github.com/user-attachments/assets/ae0317f5-a34b-4475-9519-80a5c9133a76" />
+<img width="609" height="369" alt="image" src="https://github.com/user-attachments/assets/2c1fc288-fabc-4dbd-9d52-53845a00ddc9" />
 
 ## Why I'm making this
 
-I'm taking this project as an opportunity to familiarize myself with Cursor and Claude, since these are platforms I'm restricted from using at work.  As a developer, I want to gain experience with these tools so I can always stay up to date with the newest tools.  I also just really needed somewhere to sell my loaves, as I'm getting tired of my google form :')
+I'm building Loaf as an opportunity to grow beyond my primarily frontend professional experience and get hands-on experience developing a full-stack application. I also wanted to explore working with LLMs beyond simply using AI-powered coding tools, and learn how to integrate an AI assistant into a real application.
 
 ## What I'm still working on
 
-This is purely a frontend project right now that's taking in a mock data file.  My next step is to move the inventory into a database and have my checkout API update it.  Then people can really start using the site!  It'll be deployed as an extra tab on my portfolio site once I'm done.
+- Connecting the chat to my PostgreSQL database
+- Improving the AI chat experience
+- Knowledge retrieval (RAG) - retrieves relevant sourdough information from my personal knowledge base
+- Recipes frontend/data
