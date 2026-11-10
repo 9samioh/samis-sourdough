@@ -20,3 +20,22 @@ export const scaleRecipeTool = {
     additionalProperties: false,
   },
 };
+
+export const getRecipeTool = {
+  type: "function" as const,
+  name: "get_recipe",
+  description: "Retrieve one sourdough recipe or all available recipes.",
+  strict: true,
+  parameters: {
+    type: "object",
+    properties: {
+      slug: {
+        type: ["string", "null"],
+        description:
+          "The unique slug of the recipe to get, or null to retrieve all recipes.",
+      },
+    },
+    required: ["slug"],
+    additionalProperties: false,
+  },
+};
