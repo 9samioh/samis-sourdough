@@ -7,6 +7,7 @@
 }
 
 .logo {
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -27,7 +28,19 @@
   color: #503829;
 }
 
-.tagline {
-  font-size: 0.85rem;
-  color: #806b59;
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  text-decoration: none;
+  font-weight: 400;
+  transition: font-weight 0.2s ease;
+  color: var(--med-brown);
+}
+
+.navLink.active {
+  font-weight: 700;
 }

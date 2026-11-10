@@ -63,7 +63,7 @@
 
 .inputContainer {
   width: 100%;
-  background: #fffcf6;
+  background: var(--white);
   border: 1px solid #e8ddcd;
   border-radius: 18px;
   padding: 18px 20px;
@@ -112,15 +112,15 @@
   height: 38px;
   border: none;
   border-radius: 50%;
-  background: #806047;
-  color: #fffcf6;
+  background: var(--med-brown);
+  color: var(--white);
   font-size: 1.4rem;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .inputFooter button:hover:not(:disabled) {
-  background: #503829;
+  background: var(--dark-brown);
   transform: translateY(-2px);
 }
 
@@ -142,7 +142,7 @@
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #98765a;
+  color: var(--med-brown);
 }
 
 .promptGrid {
@@ -155,10 +155,10 @@
   min-height: 56px;
   padding: 12px 16px;
   text-align: left;
-  border: 1px solid #e5d8c6;
+  border: 1px solid var(--border-brown);
   border-radius: 12px;
-  background: #eee5d8;
-  color: #624a38;
+  background: var(--light-brown);
+  color: var(--dark-brown);
   font-family: var(--font-jakarta), sans-serif;
   font-size: 0.78rem;
   line-height: 1.5;

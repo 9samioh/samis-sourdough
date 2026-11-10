@@ -23,3 +23,26 @@ export async function getRecipe(slug: string) {
 
   return result.data;
 }
+
+export type ChatMessage = {
+  role: "user" | "assistant";
+  content: "string";
+};
+
+export async function sendChatMessage(messages: ChatMessage[]) {
+  const response = await fetch(`${API_URL}/api/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ messages }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to send message");
+  }
+
+  const result = await response.json();
+
+  return result.reply;
+}

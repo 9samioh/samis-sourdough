@@ -2,11 +2,17 @@
   --background: #f5efe3;
   --dark-brown: #503829;
   --med-brown: #806b59;
+  --light-brown: #eee5d8;
+  --border-brown: #e5d8c6;
+  --white: #fffcf6;
 }
 
 body {
   margin: 0;
   font-family: var(--font-jakarta), sans-serif;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--brown);
 }
 
 * {
