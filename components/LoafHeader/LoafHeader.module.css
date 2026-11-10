@@ -9,10 +9,19 @@
 .logo {
   display: flex;
   align-items: center;
+  gap: 2px;
+}
+
+.logoImg {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  padding-top: 2px;
 }
 
 .logoText {
-  font-family: var(--font-serif);
+  font-family: var(--font-fraunces), serif;
   font-size: 2rem;
   font-weight: 600;
   color: #503829;

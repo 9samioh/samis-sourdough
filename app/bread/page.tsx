@@ -3,6 +3,7 @@
 import { useState } from "react";
 import LoafHeader from "@/components/LoafHeader/LoafHeader";
 import styles from "./page.module.css";
+import WelcomeScreen from "@/components/WelcomeScreen/WelcomeScreen";
 
 export default function BreadPage() {
   const [isChatActive, setIsChatActive] = useState(false);
@@ -12,9 +13,11 @@ export default function BreadPage() {
       <LoafHeader />
 
       {!isChatActive && (
-        <section className={styles.welcome}>
-          {/* Welcome screen goes here */}
-        </section>
+        <WelcomeScreen
+          onSend={(message) => {
+            console.log("Message to send:", message);
+          }}
+        />
       )}
 
       {isChatActive && (
