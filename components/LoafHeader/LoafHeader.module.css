@@ -1,0 +1,46 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 5%;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.logoImg {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  padding-top: 2px;
+}
+
+.logoText {
+  font-family: var(--font-fraunces), serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #503829;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navLink {
+  text-decoration: none;
+  font-weight: 400;
+  transition: font-weight 0.2s ease;
+  color: var(--med-brown);
+}
+
+.navLink.active {
+  font-weight: 700;
+}

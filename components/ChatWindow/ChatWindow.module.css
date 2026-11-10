@@ -1,0 +1,112 @@
+.chatWindow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  flex: 1;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.messages {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 8px;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+.userMessage,
+.assistantMessage {
+  padding: 14px 18px;
+  border-radius: 18px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.userMessage {
+  max-width: 80%;
+  align-self: flex-end;
+  background: var(--light-brown);
+  color: var(--dark-brown);
+  border-bottom-right-radius: 4px;
+  border: 1px solid var(--border-brown);
+}
+
+.assistantMessage {
+  align-self: flex-start;
+  color: var(--dark-brown);
+  border-bottom-left-radius: 4px;
+}
+
+.userMessage p,
+.assistantMessage p {
+  margin: 0;
+}
+
+.inputForm {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid #e8ddcd;
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 16px rgba(80, 56, 41, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.inputForm:focus-within {
+  border-color: #b99a7c;
+  box-shadow: 0 4px 18px rgba(80, 56, 41, 0.08);
+}
+
+.inputForm textarea::placeholder {
+  color: #aa9a88;
+}
+
+.textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  padding: 8px;
+  color: var(--dark-brown);
+}
+
+.sendButton {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--med-brown);
+  color: var(--white);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.sendButton:hover:not(:disabled) {
+  background: var(--dark-brown);
+  transform: translateY(-2px);
+}
+
+.sendButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

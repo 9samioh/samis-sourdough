@@ -1,110 +1,67 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { loaves, Loaf } from "@/data/loaves";
-import UserGate from "@/components/UserGate";
-import LoafCard from "@/components/LoafCard";
-import Modal from "@/components/Modal";
-import { CartItem } from "@/types/Types";
-import Cart from "@/components/Cart";
+import { useState } from "react";
+import LoafHeader from "@/components/LoafHeader/LoafHeader";
+import styles from "./page.module.css";
+import WelcomeScreen from "@/components/WelcomeScreen/WelcomeScreen";
+import { sendChatMessage, type ChatMessage } from "@/lib/api";
+import ChatWindow from "@/components/ChatWindow/ChatWindow";
 
+export default function BreadPage() {
+  const [isChatActive, setIsChatActive] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-export default function BreadShop() {
-  // user details
-  const [user, setUser] = useState<{ name: string; email: string } | null>(
-    null
-  );
+  async function handleSend(message: string) {
+    const trimmedMessage = message.trim();
 
-  useEffect(() => {
-    const saved = localStorage.getItem("breadUser");
-    if (saved) setUser(JSON.parse(saved));
-  }, []);
+    if (!trimmedMessage || isLoading) return;
 
-  // current cart
-  const [cart, setCart] = useState<CartItem[]>([]);
-  console.log(cart);
+    const updatedMessages: ChatMessage[] = [
+      ...messages,
+      { role: "user", content: trimmedMessage } as ChatMessage,
+    ];
+    setMessages(updatedMessages);
+    setInput("");
+    setIsLoading(true);
 
-  const addToCart = (item: CartItem) => {
-    setCart((prev) => [...prev, item]);
-  };
+    try {
+      const reply = await sendChatMessage(updatedMessages);
 
-  const removeFromCart = (index: number) => {
-    setCart((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  // modal for loaf selection
-  const [selectedLoaf, setSelectedLoaf] = useState<Loaf | null>(null);
-
-  const closeModal = () => {
-    setSelectedLoaf(null);
-  };
-
-  const handleAdd = (size: "half" | "full") => {
-    if (!selectedLoaf) return;
-    const price =
-      size === "half" ? selectedLoaf.halfPrice : selectedLoaf.fullPrice;
-
-    addToCart({
-      id: selectedLoaf.id,
-      name: selectedLoaf.name,
-      size,
-      price,
-    });
-
-    closeModal();
-  };
-
-  // check if a loaf is sold out
-  const getRemainingHalves = (loafId: string) => {
-    const loaf = loaves.find((l) => l.id === loafId);
-    if (!loaf) return 0;
-
-    let halves = loaf.fullInventory * 2;
-
-    cart.forEach((item) => {
-      if (item.id === loafId) {
-        halves -= item.size === "half" ? 1 : 2;
-      }
-    });
-
-    return halves;
-  };
-
-  // user basket selection ui
-  if (!user) {
-    return <UserGate onVerified={setUser} />;
+      // Add the AI's response to the conversation
+      setMessages([...updatedMessages, { role: "assistant", content: reply }]);
+    } catch (error) {
+      console.error("Chat error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  // sourdoughmarket
   return (
-    <div className="p-6 pb-40">
-      <h1 className="text-3xl font-bold">Sami’s Sourdough</h1>
-      <p className="text-gray-600 mt-1">What’s available this week?</p>
+    <main className={styles.page}>
+      <LoafHeader />
 
-      {/* loaves */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-        {loaves.map((loaf) => (
-          <LoafCard
-            key={loaf.id}
-            loaf={loaf}
-            halvesLeft={getRemainingHalves(loaf.id)}
-            onOpen={setSelectedLoaf}
-          />
-        ))}
-      </div>
-
-      {/* loaf selection modal */}
-      {selectedLoaf && (
-        <Modal
-          selectedLoaf={selectedLoaf}
-          closeModal={closeModal}
-          handleAdd={handleAdd}
-          getRemainingHalves={getRemainingHalves}
+      {!isChatActive && (
+        <WelcomeScreen
+          onSend={(message) => {
+            setIsChatActive(true);
+            handleSend(message);
+          }}
         />
       )}
 
-      {/* checkout cart */}
-      <Cart cart={cart} removeFromCart={removeFromCart} />
-    </div>
+      {isChatActive && (
+        <section className={styles.chat}>
+          <ChatWindow
+            messages={messages}
+            input={input}
+            isLoading={isLoading}
+            onInputChange={setInput}
+            onSend={handleSend}
+          />
+        </section>
+      )}
+    </main>
   );
 }
