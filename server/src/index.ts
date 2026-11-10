@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://bread.samanthaoh.com"],
   })
 );
 app.use(express.json());
@@ -57,6 +57,6 @@ app.get("/api/test-error", async (req, res) => {
 app.use(errorHandler);
 
 // Start server
-app.listen(PORT, () => {
+app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
