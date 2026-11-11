@@ -56,7 +56,11 @@ router.post("/", async (req, res, next) => {
 
     // Handle tool calls - allows loaf to use tools autonomously
     while (true) {
-      const toolOutputs = [];
+      const toolOutputs: {
+        type: "function_call_output";
+        call_id: string;
+        output: string;
+      }[] = [];
 
       for (const item of response.output) {
         // Only process function calls
