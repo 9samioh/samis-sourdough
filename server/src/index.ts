@@ -12,7 +12,11 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://bread.samanthaoh.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://bread.samanthaoh.com",
+      "https://samis-sourdough.vercel.app",
+    ],
   })
 );
 app.use(express.json());
